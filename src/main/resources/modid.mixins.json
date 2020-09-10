@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "package": "io.vortetty.washingMachine.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "composterMixin",
+    "hopperBlockEntityMixin",
+    "momentumLimiterMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
