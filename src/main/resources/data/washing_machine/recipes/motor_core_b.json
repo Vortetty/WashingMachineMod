@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "#$#",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:dirt"
+        },
+        "$": {
+            "tag": "washing_machine:upgradeable_cores"
+        }
+    },
+    "result": {
+        "item": "washing_machine:motor_core_b",
+        "count": 1
+    }
+}

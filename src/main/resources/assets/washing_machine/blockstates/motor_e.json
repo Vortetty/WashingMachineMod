@@ -1,0 +1,5 @@
+{
+	"variants": {
+		"": { "model": "washing_machine:block/motor_e" }
+	}
+}

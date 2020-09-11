@@ -18,9 +18,19 @@ minecraft {
 
 
 repositories {
-    maven { url = "http://maven.fabricmc.net/" }
-    maven {url "https://maven.jamieswhiteshirt.com/libs-release/"}
+    maven {
+        url = "http://maven.fabricmc.net/"
+
+    }
+    maven {
+        url "https://maven.jamieswhiteshirt.com/libs-release/"
+    }
+
     flatDir name: 'flatDirRepo', dirs: 'C:\\Users\\Vortetty\\patch1\\clothesline-fabric\\build\\libs'
+
+    maven {
+        url = 'https://raw.githubusercontent.com/Devan-Kerman/Devan-Repo/master/'
+    }
 }
 
 dependencies {
@@ -41,6 +51,12 @@ dependencies {
     modImplementation ":clothesline-fabric-0.2.1+1.16.2-dev"
     include "com.jamieswhiteshirt:rtree-3i-lite-fabric:0.3.0"
     modCompile "com.jamieswhiteshirt:rtree-3i-lite-fabric:0.3.0"
+
+    // ARRP
+    modImplementation group: 'net.devtech', name: 'arrp', version: '0.2.6'
+
+    //rei for testing
+    modRuntime "me.shedaniel:RoughlyEnoughItems:5.4.2"
 }
 
 processResources {

@@ -4,13 +4,17 @@ import com.jamieswhiteshirt.clothesline.api.NetworkManagerProvider
 import com.jamieswhiteshirt.clothesline.api.NetworkNode
 import io.vortetty.washingMachine.block.entity.motorBlockEntity
 import net.fabricmc.fabric.api.`object`.builder.v1.block.FabricBlockSettings
-import net.minecraft.block.*
+import net.minecraft.block.Block
+import net.minecraft.block.BlockEntityProvider
+import net.minecraft.block.BlockRenderType
+import net.minecraft.block.BlockState
 import net.minecraft.block.entity.BlockEntity
+import net.minecraft.entity.ItemEntity
+import net.minecraft.item.ItemStack
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.math.BlockPos
-import net.minecraft.util.shape.VoxelShape
-import net.minecraft.util.shape.VoxelShapes
 import net.minecraft.world.BlockView
+import net.minecraft.world.GameRules
 import net.minecraft.world.World
 import java.util.*
 
@@ -36,8 +40,10 @@ class motorBlock(speed: Int, tickrate: Int, settings: FabricBlockSettings): Bloc
                 var momentum = i.network.state.momentum
                 if(momentum < speed) {
                     i.network.state.momentum = speed
-                    currentSpeed = i.network.state.momentum
                 }
+            }
+            if(currentSpeed < speed) {
+                currentSpeed = speed
             }
         }
         else {
@@ -47,6 +53,9 @@ class motorBlock(speed: Int, tickrate: Int, settings: FabricBlockSettings): Bloc
                     i.network.state.momentum = momentum / 2
                     currentSpeed = i.network.state.momentum
                 }
+            }
+            if(currentSpeed > 0) {
+                currentSpeed /= 2
             }
         }
         world.getBlockTickScheduler().schedule(pos, this, tickrate)
@@ -70,6 +79,7 @@ class motorBlock(speed: Int, tickrate: Int, settings: FabricBlockSettings): Bloc
     }
 
     override fun getRenderType(state: BlockState?): BlockRenderType? {
-        return BlockRenderType.INVISIBLE
+        //return super.getRenderType(state)
+        return BlockRenderType.MODEL
     }
 }

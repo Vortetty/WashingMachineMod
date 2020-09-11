@@ -10,6 +10,7 @@ import net.minecraft.nbt.CompoundTag
 
 class motorBlockEntity(): BlockEntity(MOTOR_BLOCK_ENTITY) {
     var speed = 0
+    var currentRot: Float = 0f
 
     override fun toTag(tag: CompoundTag): CompoundTag? {
         super.toTag(tag)

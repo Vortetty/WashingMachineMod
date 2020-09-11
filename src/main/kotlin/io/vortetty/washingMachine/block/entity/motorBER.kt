@@ -28,7 +28,6 @@ import kotlin.math.sin
 
 class motorBER(dispatcher: BlockEntityRenderDispatcher): BlockEntityRenderer<motorBlockEntity>(dispatcher){
     var manager = MinecraftClient.getInstance().getBlockRenderManager()
-    var currentRot: Float = 0f
 
     fun getLight(pos: BlockPos, entity: BlockEntity): Int {
         return WorldRenderer.getLightmapCoordinates(entity.getWorld(), pos)
@@ -48,22 +47,53 @@ class motorBER(dispatcher: BlockEntityRenderDispatcher): BlockEntityRenderer<mot
     }
 
     override fun render( entity: motorBlockEntity, tickDelta: Float, matrices: MatrixStack, vertexConsumers: VertexConsumerProvider, light: Int, overlay: Int) {
+        var state = Blocks.IRON_BARS.getDefaultState()
+        var model = manager.getModel(state)
+
+        if(entity.world!!.isReceivingRedstonePower(entity.pos)) {
+            entity.currentRot += (entity.getCachedState().block as motorBlock).currentSpeed
+        }
+
+        // the X bar
         matrices.push()
 
-        matrices.translate(0.0, -0.0625*3, 0.0)
+        matrices.translate(0.0, -0.0625*2, 0.0)
         matrices.translate(0.5, 0.5, 0.5)
         matrices.multiply(Vector3f.POSITIVE_X.getDegreesQuaternion(90f))
-        if(entity.world!!.isReceivingRedstonePower(entity.pos)) {
-            currentRot += (entity.getCachedState().block as motorBlock).currentSpeed
-        }
-        matrices.multiply(Vector3f.POSITIVE_Y.getDegreesQuaternion(currentRot))
+        matrices.multiply(Vector3f.POSITIVE_Y.getDegreesQuaternion(entity.currentRot))
         matrices.translate(-0.5, -0.5, -0.5)
-
-        var model = manager.getModel(Blocks.IRON_BARS.getDefaultState())
 
         //model.ambientOcclusion = 5
 
-        manager.modelRenderer.render(entity.world, model,  Blocks.IRON_BARS.getDefaultState(), entity.pos, matrices, vertexConsumers.getBuffer(RenderLayers.getMovingBlockLayer(Blocks.IRON_BARS.getDefaultState())), false, entity.world!!.random, Blocks.IRON_BARS.getDefaultState().getRenderingSeed(entity.pos), OverlayTexture.DEFAULT_UV)
+        manager.modelRenderer.render(entity.world, model,  state, entity.pos, matrices, vertexConsumers.getBuffer(RenderLayers.getMovingBlockLayer(state)), false, entity.world!!.random, state.getRenderingSeed(entity.pos), OverlayTexture.DEFAULT_UV)
+
+        matrices.pop()
+
+        // the Z bar
+        matrices.push()
+
+        matrices.translate(0.0, -0.0625*2, 0.0)
+        matrices.translate(0.5, 0.5, 0.5)
+        matrices.multiply(Vector3f.POSITIVE_Z.getDegreesQuaternion(90f))
+        matrices.multiply(Vector3f.POSITIVE_Y.getDegreesQuaternion(entity.currentRot))
+        matrices.translate(-0.5, -0.5, -0.5)
+
+        //model.ambientOcclusion = 5
+
+        manager.modelRenderer.render(entity.world, model,  state, entity.pos, matrices, vertexConsumers.getBuffer(RenderLayers.getMovingBlockLayer(state)), false, entity.world!!.random, state.getRenderingSeed(entity.pos), OverlayTexture.DEFAULT_UV)
+
+        matrices.pop()
+
+        // the Y bar
+        matrices.push()
+
+        matrices.translate(0.5, 0.5, 0.5)
+        matrices.multiply(Vector3f.POSITIVE_Y.getDegreesQuaternion(-entity.currentRot))
+        matrices.translate(-0.5, -0.5, -0.5)
+
+        //model.ambientOcclusion = 5
+
+        manager.modelRenderer.render(entity.world, model,  state, entity.pos, matrices, vertexConsumers.getBuffer(RenderLayers.getMovingBlockLayer(state)), false, entity.world!!.random, state.getRenderingSeed(entity.pos), OverlayTexture.DEFAULT_UV)
 
         matrices.pop()
     }

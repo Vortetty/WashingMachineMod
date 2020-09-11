@@ -1,0 +1,21 @@
+{
+  "replace": false,
+  "values": [
+    "washing_machine:motor_core_a",
+    "washing_machine:motor_core_b",
+    "washing_machine:motor_core_c",
+    "washing_machine:motor_core_d",
+    "washing_machine:motor_core_e",
+    "washing_machine:motor_core_f",
+    "washing_machine:motor_core_s",
+    "washing_machine:motor_core_ss",
+    "washing_machine:motor_core_sss",
+    "washing_machine:motor_core_ssss",
+    "washing_machine:motor_core_sssss",
+    "washing_machine:motor_core_ssssss",
+    "washing_machine:motor_core_x",
+    "washing_machine:motor_core_y",
+    "washing_machine:motor_core_z",
+    "washing_machine:empty_motor_core"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "washing_machine:motor_a",
+          "weight": 1,
+          "conditions": [
+            {
+              "condition": "minecraft:survives_explosion"
+            }
+          ]
+        },
+        {
+          "type": "minecraft:item",
+          "name": "washing_machine:motor_core_a",
+          "conditions": [
+            {
+              "condition": "minecraft:inverted",
+              "term": {
+                "condition": "minecraft:survives_explosion"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

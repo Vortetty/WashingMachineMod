@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "$#$",
+        "#%#",
+        "$#$"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:stone"
+        },
+        "$": {
+            "tag": "minecraft:logs"
+        },
+        "%": {
+            "item": "minecraft:redstone"
+        }
+    },
+    "result": {
+        "item": "washing_machine:empty_motor_core",
+        "count": 1
+    }
+}

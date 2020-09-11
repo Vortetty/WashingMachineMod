@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "#$#",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "washing_machine:frame_bar"
+        },
+        "$": {
+            "item": "washing_machine:axle_set"
+        }
+    },
+    "result": {
+        "item": "washing_machine:motor_frame",
+        "count": 1
+    }
+}

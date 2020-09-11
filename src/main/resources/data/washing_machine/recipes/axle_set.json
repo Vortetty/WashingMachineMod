@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "washing_machine:axle"
+        },
+        {
+            "item": "washing_machine:axle"
+        },
+        {
+            "item": "washing_machine:axle"
+        },
+        {
+            "item": "washing_machine:axle"
+        }
+    ],
+    "result": {
+        "item": "washing_machine:axle_set",
+        "count": 1
+    }
+}

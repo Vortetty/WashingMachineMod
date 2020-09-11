@@ -1,0 +1,12 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "minecraft:iron_bars"
+        }
+    ],
+    "result": {
+        "item": "washing_machine:axle",
+        "count": 2
+    }
+}
